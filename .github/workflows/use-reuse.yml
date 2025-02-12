@@ -70,6 +70,12 @@ jobs:
     uses: ./.github/workflows/reusable.yml # reusing workflow
     with:
       artifact-name: dist-files
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result }}
   report:
     needs: [lint, deploy] # delay execution of report job only run after lint and deploy finish
     if: failure()
