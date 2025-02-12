@@ -68,6 +68,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml # reusing workflow
+    with:
+      artifact-name: dist-files
   report:
     needs: [lint, deploy] # delay execution of report job only run after lint and deploy finish
     if: failure()
